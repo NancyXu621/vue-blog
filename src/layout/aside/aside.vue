@@ -18,11 +18,11 @@ export default {
             menuList: [
                 {
                     icon: "el-icon-s-home",
-                    title: "首页"
+                    title: "首页"//视频推荐
                 },
                 {
                     icon: "",
-                    title: "书籍"
+                    title: "书籍"//文本编辑
                 },
                 {
                     icon: "",
@@ -57,6 +57,26 @@ export default {
                         {
                             icon: "",
                             subtitle: "动漫"
+                        }
+                    ]
+                },
+                {
+                    icon: "",
+                    title: "我的图库",
+                    submenuList: [
+                        {
+                            icon: "",
+                            subtitle: "收藏"
+                        }
+                    ]
+                },
+                {
+                    icon: "",
+                    title: "待办事项",
+                    submenuList: [
+                        {
+                            iocn:"",
+                            subtitle:"待办事项"
                         }
                     ]
                 }

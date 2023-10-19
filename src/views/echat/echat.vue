@@ -1,6 +1,6 @@
 <template>
     <div ref="myChart" style="width: 600px;height:400px;"></div>
-    111
+    <div> 时间：{{ time }} </div>
 </template>
 
 <script>
@@ -8,7 +8,7 @@
 export default {
     data() {
         return {
-
+            time:""
         }
     },
     created(){

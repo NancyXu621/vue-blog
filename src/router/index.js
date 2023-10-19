@@ -4,5 +4,4 @@ const routes = [
   { path: '/', redirect: login },
   { path:'/echat', redirect: echat },
 ]
-
 export default routes

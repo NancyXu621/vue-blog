@@ -1,5 +1,5 @@
 <template>
-  <div>footer</div>
+    <div>个人信息</div>
 </template>
 
 <script>
