@@ -1,5 +1,11 @@
 <template>
-    <router-view></router-view>
+    <router-view>
+        <translation v-solt="{Component}">
+            <keep-alive>
+                <component :is="Component" />
+            </keep-alive>
+        </translation>
+    </router-view>
 </template>
 
 <script>

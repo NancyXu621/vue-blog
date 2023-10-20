@@ -1,7 +1,19 @@
-import login from '../views/login/login.vue'
-import echat from '../views/echat/echat.vue'
+
+import { createRouter } from "vue-router"
 const routes = [
-  { path: '/', redirect: login },
-  { path:'/echat', redirect: echat },
+    { path: '/', redirect: 'login' },
+    {
+        name: 'login',
+        path: '/login',
+        component: () => import('../views/login/login.vue'),
+        meta: {
+            title: '登录'
+        }
+    },
 ]
+const router = createRouter({
+    history: 
+    routes,
+})
+
 export default routes
