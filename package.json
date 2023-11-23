@@ -12,6 +12,7 @@
     "@element-plus/icons-vue": "^2.1.0",
     "echarts": "^5.4.3",
     "element-plus": "^2.3.8",
+    "pinia": "^2.1.7",
     "scss": "^0.2.4",
     "smoothscroll-polyfill": "^0.4.4",
     "swipe": "^1.7.7",

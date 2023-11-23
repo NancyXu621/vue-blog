@@ -1,6 +1,7 @@
 <template>
     <div ref="myChart" style="width: 600px;height:400px;"></div>
     <div> 时间：{{ time }} </div>
+    <div></div>
 </template>
 
 <script>
