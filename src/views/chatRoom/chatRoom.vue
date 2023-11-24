@@ -1,234 +1,94 @@
-<!-- 音转文 点击播放改文字的语音 -->
 <template>
-    <div class="comment">
-        <div class="comment_audio">
-            <audio src="//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/music/audio.mp3" preload="auto"
-                id="music" type="audio/wav" controls></audio>
-        </div>
-        <div class="comment_list">
-            <div class="comment_wrap" ref="wrapper">
-                <div ref="list">
-                    <div v-for="(item, index) in list" :key="item.id" class="comment_item">
-                        <!-- <el-icon color="green" v-if="playAudio == true" @click="stop(item)">
-                            <VideoPause />
-                        </el-icon>
-                        <el-icon color="red" v-else @click="open(item)">
-                            <VideoPlay />
-                        </el-icon> -->
-                        <span>{{ item.speakerStartTime }}-{{ item.speakerEndTime }}</span>
-                        <sapn> {{ item.speaker }}：{{ item.result }}</sapn>
-                    </div>
-                </div>
-            </div>
-            {{ result }}
-            <div class="rest-nums" v-show="restComment" @click="scrollBottom">
-                {{ restComment }}条新消息
-            </div>
-        </div>
+    <div class="login_bg">
+        <!-- <el-form :model="user" :rules="rules">
+            <el-form-item label="用户名" prop="username">
+                <el-input v-model="user.username" placeholder="请输入用户名"></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+                <el-input v-model="user.password" placeholder="请输入密码"></el-input>
+            </el-form-item>
+        </el-form>
+        <el-button @click="submit">登录</el-button> -->
+        <div>1、请使用forEach、map、filter、some、every等相关api对1,2,3...,10这些数据进行处理：</div>
+        <div> 1.请用相关api过滤出1-10大于5的值。（期望得到一个Array: [1,2,3...]）</div>
+        {{ numAll }}
+        <el-button @click="addNum">计算</el-button>
+        <div>2.请用相关api查找出1-10中是否有数值11（期望得到一个Boolean: true、false）</div>
+        <el-button @click="checkOut">查找</el-button>
+        <div> 3.请用相关api得到一个都是乘以*2的新数组（期望得到一个Array: [2,4,6...]）</div>
+        {{ numList }}
+        <el-button @click="add2">计算</el-button>
+        <div>4.请用相关api判断1-10中是否都大于5。（期望得到一个Boolean: true、false）</div>
+        <el-button @click="add4">判断</el-button>
+        <div>5.请用相关api判断1-10中是否存在大于9数值的（期望得到一个Boolean: true、false）</div>
+        <el-button @click="add5">判断</el-button>
+        <div>6.计算[1,2,3,4,5,6,7,8,9,10]加起来总数</div>
+        <el-button @click="add6">计算</el-button>
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            list: [],
-            restComment: 0, //显示新消息数
-            restNums: 0,
-            wrapperDom: null,
-            listDom: null,
-            wrapperHeight: 0,
-            playAudio: false,
-            result: "",
-            ws: "",
-        };
-    },
-    mounted() {
-        this.wrapperDom = this.$refs.wrapper;
-        this.listDom = this.$refs.list;
-        this.wrapperHeight = this.wrapperDom.offsetHeight; //列表外的高度
-        if (process.env.NODE_ENV == "development") {
-            this.initwebscoket("ws://192.168.0.18:8050/api/voice/msg?trailId=1000");
-        } else {
-            this.initwebscoket(`wss://${window.location.hostname}:8083/api/voice/msg`);
-        }
-    },
-    methods: {
-        initwebscoket(url) {
-            if ("WebSocket" in window) {
-                // 打开一个 web socket
-                this.ws = new WebSocket(url);
-                let that = this;
-                that.ws.onopen = function (evt) {
-                    that.ws.send("发送数据");
-                    setTimeout(function () {
-                        that.ws.send("发送数据");
-                    }, 30000)
-                    console.log("发送消息", evt);
-                };
-                that.ws.onmessage = function (evt) {
-                    console.log("接收消息");
-                    if (evt.data) {
-                        let data = JSON.parse(evt.data);
-                        that.add(data);
-                    }
-                };
-                that.ws.onclose = function (evt) {
-                    if (evt.code == 4000) {
-                        console.log("自主关闭");
-                    } else {
-                        console.log("连接关闭");
-                    }
-                };
-                that.ws.onerror = function (error) {
-                    console.log("连接出错", error);
-                };
-            } else {
-                // ("您的浏览器不支持 WebSocket!");
-                console.log("您的浏览器不支持 WebSocket!");
-            }
-        },
-        // 修改内容保存
-        inputText(index) {
-            console.log("输入内容是", this.$refs.editor[index].innerHTML);
-        },
-        // 播放
-        open(item) {
-            this.playAudio = true;
-            let myAud = document.getElementById("music");
-            // 设置当前时间
-            myAud.currentTime = item.audioStartSecond;
-            myAud.play();
-            // 播放
-            var audioFun = function () {
-                if (myAud.currentTime >= item.audioEndSecond) {
-                    myAud.pause();
-                    myAud.removeEventListener("timeupdate", audioFun);
-                }
-            };
-            myAud.addEventListener("timeupdate", audioFun);
-        },
-        stop() {
-            this.playAudio = false;
-            let myAud = document.getElementById("music");
-            myAud.pause();
-        },
-        // 新增说的数据
-        // {
-        //     speaker: "", //角色
-        //     index: null, //序号
-        //     result: "", //当前发言人说的话
-        //     speakerStartTime: '', //开始时间
-        //     speakerEndTime: '', //结束时间
-        //     audioStartSecond: 0, //音频开始播放时间
-        //     audioEndSecond: 0, //音频暂停时间
-        //     audioDurationSecond: 0,
-        // },
-        add(item) {
-            let found = false;
-            for (let i = 0; i < this.list.length; i++) {
-                if (this.list[i].index === item.index) {
-                    this.list[i] = item;
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                this.list.push(item);
-            }
-            // 新增数据后面加载数据
-            this.$nextTick(() => {
-                this.renderComment();
-            });
-        },
-        // 渲染评论
-        renderComment() {
-            const listHight = this.listDom.offsetHeight; // 列表高度
-            const diff = listHight - this.wrapperHeight; // 列表高度与容器高度差值
-            const top = this.wrapperDom.scrollTop; // 列表滚动高度
-            if (diff - top < 50) {
-                if (diff > 0) {
-                    this.wrapperDom.scrollTo({
-                        top: diff + 20,
-                        left: 0,
-                        behavior: "smooth",
-                    });
-                    this.restNums = 0;
-                }
-            } else {
-                this.restNums++;
-            }
-            this.restComment = this.restNums >= 99 ? "99+" : this.restNums;
-        },
-        // 滚动到底部
-        scrollBottom() {
-            this.restNums = 0; // 清除剩余消息
-            this.restComment = this.restNums;
-            this.wrapperDom.scrollTo({
-                top: this.listDom.offsetHeight,
-                left: 0,
-                behavior: "smooth",
-            });
-        },
-    },
-};
-</script>
+<script setup>
+import { ref } from 'vue'
+import router from '../../router';
+const user = ref({
+    username: '',
+    password: ''
+})
+const numAll = ref('')
+const numList = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+// 1
+const addNum = () => {
+    numAll.value = numList.value.filter((item) => {
+        return item > 5
+    })
+    return numAll.value
 
-<style lang="scss" scoped>
-#music {
-    width: 100%;
 }
-
-.comment {
+// 2
+const checkOut = () => {
+    let checkOutNum = numList.value.some(item => item == 11)
+    console.log(checkOutNum)
+}
+/** 请用相关api得到一个都是乘以*2的新数组（期望得到一个Array: [2,4,6...]） */
+const add2 = () => {
+    let allList = []
+    allList.value = numList.value.forEach((item) => {
+        allList.push(item * 2)
+    })
+    console.log(allList)
+}
+const add4 = () => {
+    let checkOutNum = numList.value.every(item => item > 9)
+    console.log(checkOutNum)
+}
+const add5 = () => {
+    let checkOutNum = numList.value.some(item => item > 9)
+    console.log(checkOutNum)
+}
+/** 方法1 */
+const add6 = () => {
+    let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let all = ref(null)
+    for (let i = 0; i < list.length; i++) {
+        all.value += list[i]
+    }
+    console.log(all.value)
+}
+/** 方法2 */
+const add66 = () => {
+    let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let all = list.reduce((a, b) => a + b);
+    console.log(all);
+};
+onMounted(() => {
+    getlist()
+})
+</script>
+ 
+<style  scoped>
+.login_bg {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    padding: 24px;
-
-    &_button {
-        padding: 12px;
-    }
-
-    &_audio {
-        margin: 0 12px 12px 12px;
-    }
-
-    &_list {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        overflow: hidden;
-        background: #ebebeb;
-        border-radius: 12px;
-        padding: 24px;
-    }
-
-    &_wrap {
-        flex: 1;
-        overflow: auto;
-    }
-
-    &_item {
-        padding: 4px;
-        line-height: 2;
-    }
-
-    .comment_item_text {
-        line-height: 24px;
-    }
-
-    .rest-nums {
-        position: absolute;
-        line-height: 24px;
-        color: #f00;
-        border-radius: 15px;
-        padding: 0 15px;
-        bottom: 10px;
-        background: #fff;
-        font-size: 14px;
-        left: 10px;
-    }
+    background: rgb(90, 162, 245)
 }
 </style>

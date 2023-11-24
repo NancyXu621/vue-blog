@@ -1,16 +1,16 @@
 <template>
-    <div>my todo list</div>
-    <div> No1.  writing a novel update a week   </div>
-    <div> No2. wacth webvideo at 60' a week</div>
-    <div> No3. my must be update take a plog at two week </div>
+    <div class="home_page">
+        <el-button @click="$router.go(-1)">返回</el-button>
+    </div>
 </template>
 
-<script>
-export default {
+<script setup>
 
-}
 </script>
 
-<style>
-
+<style scoped>
+.home_page {
+    width: 100%;
+    height: 100%;
+}
 </style>
