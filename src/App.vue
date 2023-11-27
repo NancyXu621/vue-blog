@@ -6,15 +6,13 @@
 
 <script>
 export default {
-    watch: {
-        $route(to, from) {
-            console.log('请', to, from)
-        }
-    },
+
 };
 </script>
 
 <style>
+@import './assets/global.css';
+
 html,
 body {
     width: 100%;
@@ -22,6 +20,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 #app {
     width: 100%;
     height: 100%;

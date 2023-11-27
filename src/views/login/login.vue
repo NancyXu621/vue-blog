@@ -1,6 +1,7 @@
 <template>
     <div class="login_bg">
         <div class="login_box">
+            <div>用户登录</div>
             <el-form ref="loginForm" :model="user" :rules="rules" label-width="80px" size="large"
                 @submit.native.prevent="handleLogin">
                 <el-form-item label="用户名" prop="username">
@@ -36,15 +37,42 @@ const loginFormSubmit = () => {
     console.log('登录', user.value)
     router.push('/home')
 }
+const sendSMS = () => {
+    sendSms().then((res) => {
+        console.log('发送短信码')
+    })
+}
+const handleLogin = () => {
+    router.push('login')
+}
 onMounted(() => {
     console.log('onMounted')
+    if (localStorage.getItem('token')) {
+        router.push('/home')
+    } else {
+        $Eessage.info('请登录系统')
+    }
 })
 </script>
  
-<style  scoped>
+<style lang="scss" scoped>
 .login_bg {
     width: 100%;
     height: 100%;
-    /* background: rgb(90, 162, 245) */
+    background: rgb(90, 162, 245);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login_box {
+        width: 350px;
+        height: 400px;
+        background: #fff;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 </style>
