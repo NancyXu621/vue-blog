@@ -1,8 +1,8 @@
 <template>
     <div class="login_bg">
         <div class="login_box">
-            <div>用户登录</div>
-            <el-form ref="loginForm" :model="user" :rules="rules" label-width="80px" size="large"
+            <div class="login_box_title">用户登录</div>
+            <el-form ref="loginForm" :model="user" :rules="rules" label-width="60px" size="large"
                 @submit.native.prevent="handleLogin">
                 <el-form-item label="用户名" prop="username">
                     <el-input v-model="user.username" placeholder="请输入用户名"></el-input>
@@ -34,14 +34,14 @@ const user = ref({
  * @param {*} password
  */
 const loginFormSubmit = () => {
-    console.log('登录', user.value)
+    // console.log('登录', user.value)
     router.push('/home')
 }
-const sendSMS = () => {
-    sendSms().then((res) => {
-        console.log('发送短信码')
-    })
-}
+// const sendSMS = () => {
+//     sendSms().then((res) => {
+//         console.log('发送短信码')
+//     })
+// }
 const handleLogin = () => {
     router.push('login')
 }
@@ -50,7 +50,6 @@ onMounted(() => {
     if (localStorage.getItem('token')) {
         router.push('/home')
     } else {
-        $Eessage.info('请登录系统')
     }
 })
 </script>
@@ -66,13 +65,19 @@ onMounted(() => {
 
     .login_box {
         width: 350px;
-        height: 400px;
+        // height: 400px;
         background: #fff;
         border-radius: 25px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        .login_box_title {
+            padding: 24px 0;
+            font-size: 28px;
+            font-weight: 500;
+        }
     }
 }
 </style>
