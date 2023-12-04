@@ -6,12 +6,11 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-
 export default defineConfig({
   base: './',
   server: {
     proxy: {
-      // 选项写法
+      // 选项写法 
       '/api/': {
         target: 'https://192.168.0.106:8080/api',
         changeOrigin: true,
@@ -20,7 +19,7 @@ export default defineConfig({
       },
     },
   },
-  port: 8080,
+  port: 8280,
   host: '0.0.0.0',
   open: true,
   https: false,
