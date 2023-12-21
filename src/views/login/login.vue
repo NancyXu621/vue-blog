@@ -58,7 +58,7 @@ onMounted(() => {
 .login_bg {
     width: 100%;
     height: 100%;
-    background: rgb(90, 162, 245);
+    //background: rgb(90, 162, 245);
     display: flex;
     justify-content: center;
     align-items: center;

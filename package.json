@@ -12,6 +12,7 @@
     "@element-plus/icons-vue": "^2.1.0",
     "echarts": "^5.4.3",
     "element-plus": "^2.3.8",
+    "oxlint": "0.0.21",
     "pinia": "^2.1.7",
     "sass": "^1.69.5",
     "scss": "^0.2.4",
