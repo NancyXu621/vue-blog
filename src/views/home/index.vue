@@ -1,8 +1,10 @@
 <template>
     <div class="container">
         <!-- 文件上传拖拽 -->
-        <div class="content_input">
-            <input accept="image/png" type="file" @change="changeinput" multiple />
+        <div>
+            <div class="content_input">
+                <input accept="image/png" type="file" @change="changeinput" multiple />
+            </div>
         </div>
     </div>
 </template>
@@ -19,17 +21,14 @@ export default {
         /** 文件上传 */
         changeinput(e) {
             console.log('q111', e.target.files)
-            // let data = new FormData()
             // for (let i = 0; i < e.target.files.length; i++) {
             //     data.append('file', e.target.files[i])
-            // }
-
+            // 
             // UploadFilled(data).then((res) => {
             //     if (res) {
             //         console.log('获取文件的地址', res)
             //     }
-            // })
-
+            // })    
         }
     }
 }
