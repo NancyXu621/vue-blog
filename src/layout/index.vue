@@ -9,19 +9,17 @@
 </template>
 
 <script>
-import yunHeader from './header/header.vue';
-import yunAside from './aside/aside.vue';
+import yunHeader from "./header/header.vue";
+import yunAside from "./aside/aside.vue";
 export default {
     components: {
         yunHeader,
-        yunAside
+        yunAside,
     },
     data() {
-        return {
-
-        }
+        return {};
     },
-}
+};
 </script>
 
 <style scoped>
@@ -31,6 +29,6 @@ export default {
     display: flex;
     flex-direction: column;
     background-color: #f5f5f5;
-    overflow: hidden
+    overflow: hidden;
 }
 </style>
