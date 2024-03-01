@@ -8,7 +8,7 @@
         <div id="writer"></div>
         <div>{{ list }}</div>
         <div>{{ sum }}</div>
-        <!-- <div>{{ objectList }}</div> -->
+        <!-- <div>{{ objectList }}</div> --> 
         <!-- 关于js输出 -->
         <div class="home_page_contenrt">
             <el-button type="primary" @click="openPreview">写到html</el-button>

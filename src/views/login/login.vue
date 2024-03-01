@@ -10,7 +10,7 @@
                     <el-input v-model="user.password" placeholder="请输入密码"></el-input>
                 </el-form-item>
                 <div class="login_btn">
-                    <el-button size="large" @click="loginFormSubmit" type="primary">登录</el-button>
+                    <el-button size="large" @click="loginFormSubmit(loginForm)" type="primary">登录</el-button>
                 </div>
             </el-form>
         </div>
@@ -18,11 +18,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import router from "../../router";
 const user = ref({
     username: "",
     password: ""
+})
+const rules = reactive({
+    username: [{
+        required: true, message: "请输入用户名", trigger: 'blur'
+    }],
+    password: [{
+        required: true, message: "请输入密码", trigger: 'blur'
+    }],
 })
 /**
  * 登录逻辑
@@ -32,11 +40,15 @@ const user = ref({
  * @param {*} username
  * @param {*} password
  */
-const loginFormSubmit = () => {
-    router.push("/home")
-}
-const handleLogin = () => {
-    router.push("login")
+const loginFormSubmit = (formEl) => {
+    if (!formEl) return
+    formEl.validate((valid, fields) => {
+        if (valid) {
+            router.push("/home")
+        } else {
+            console.log('error submit!', fields)
+        }
+    })
 }
 onMounted(() => {
     if (localStorage.getItem("token")) {

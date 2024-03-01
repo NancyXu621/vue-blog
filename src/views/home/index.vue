@@ -1,14 +1,22 @@
 <template>
     <div class="container">
-        <div>this is my blog</div>
-        <div>
-            
+        <div v-for="(item, index) in list" :key="index">
+            {{ item }}
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
+    data() {
+        return {
+            list: [{
+
+            }]
+        }
+    },
+
 }
 </script>
 
