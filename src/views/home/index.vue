@@ -7,17 +7,18 @@
 </template>
 
 <script>
-
 export default {
     data() {
         return {
-            list: [{
-
-            }]
-        }
+            list: [{}],
+        };
     },
-
-}
+    methods: {
+        getLisr() {
+            /** 勇敢的人先享受世界 */
+        },
+    },
+};
 </script>
 
 <style lang="scss">
