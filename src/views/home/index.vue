@@ -1,8 +1,7 @@
 <template>
-    <div class="container">
-        <div v-for="(item, index) in list" :key="index">
-            {{ item }}
-        </div>
+    <div>
+        <el-button @click="getList('1')">返回</el-button>
+        <el-input v-model="inputText"></el-input>
     </div>
 </template>
 
@@ -10,19 +9,17 @@
 export default {
     data() {
         return {
-            list: [{}],
+            list: [],
+            inputText: ""
         };
     },
     methods: {
-        getLisr() {
-            /** 勇敢的人先享受世界 */
+        getList(item) {
+            this.$router.push('/login');
+            return this.list.push(item)
         },
     },
 };
 </script>
 
-<style lang="scss">
-.container {
-    display: flex;
-}
-</style>
+<style lang="scs3s" scoped></style>

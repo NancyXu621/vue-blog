@@ -2,7 +2,7 @@
     <div class="login_bg">
         <div class="login_box">
             <div class="login_box_title">登录</div>
-            <el-form ref="loginForm" :model="user" :rules="rules" label-width="auto" @submit.native.prevent="handleLogin">
+            <el-form ref="loginForm" :model="user" :rules="rules" label-width="auto">
                 <el-form-item label="用户名" prop="username">
                     <el-input v-model="user.username" placeholder="请输入用户名"></el-input>
                 </el-form-item>
@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from "vue";
-import router from "../../router";
+import router from "../../router/index.js";
 const user = ref({
     username: "",
     password: ""
@@ -41,15 +41,20 @@ const rules = reactive({
  * @param {*} password
  */
 const loginFormSubmit = (formEl) => {
-    if (!formEl) return
-    formEl.validate((valid, fields) => {
-        if (valid) {
-            router.push("/home")
-        } else {
-            console.log('error submit!', fields)
-        }
-    })
+    console.log('111', formEl)
+    router.push("/home")
+    // formEl.validate((valid, fields) => {
+    //     if (valid) {
+    //         // 登录成功
+    //         router.push("/home")
+    //     } else {
+    //         console.log('error submit!', fields)
+    //     }
+    // })
 }
+/**
+ * 页面加载时，判断是否已经登录
+ */
 onMounted(() => {
     if (localStorage.getItem("token")) {
         router.push("/home");
