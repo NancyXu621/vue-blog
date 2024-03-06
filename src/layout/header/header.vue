@@ -1,9 +1,11 @@
 <template>
     <div class="yun_blog_header">
-        <div>icon</div>
-        <eel-dropdown-menu>
-            <el-dropdown-item>退出</el-dropdown-item>
-        </eel-dropdown-menu>
+        <span class="yun_blog_header_item">个人设置</span>
+        <span class="yun_blog_header_item" @click="logout">退出登录</span>
+        <span class="yun_blog_header_item">
+            <el-switch v-model="darkMode" :active-icon="Moon" :inactive-icon="Sunny" inline-prompt
+                style="--el-switch-on-color: #a4c7ec; --el-switch-off-color: #fff" />
+        </span>
     </div>
 </template>
 
@@ -11,15 +13,29 @@
 export default {
     data() {
         return {
-
+            darkMode: false,
+        }
+    },
+    methods: {
+        /**
+         * 退出登录
+         */
+        logout() {
+            this.$router.push('/login')
         }
     }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .yun_blog_header {
     width: 100%;
-    height: 72px;
+    background: #0960bd;
+    padding: 12px;
+
+    .yun_blog_header_item {
+        margin: 0 12px 0 0;
+        color: #fff;
+    }
 }
 </style>

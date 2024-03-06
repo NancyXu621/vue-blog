@@ -5,8 +5,14 @@
 </template>
 
 <script>
+import Layout from '../src/layout/index.vue'
 export default {
-
+    data() {
+        return {
+            include: [''],
+        }
+    },
+    components: { Layout }
 };
 </script>
 

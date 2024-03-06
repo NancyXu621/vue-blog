@@ -1,6 +1,6 @@
 
 import { createRouter, createWebHashHistory } from 'vue-router'
-import layOut from '../layout/index.vue'
+import layout from '../layout/index.vue'
 
 const routes = [
     { path: '/', redirect: 'login' },
@@ -15,7 +15,7 @@ const routes = [
     {
         name: 'home',
         path: '/home',
-        // component: layOut,
+        component: layout,
         component: () => import('../views/home/index.vue'),
         meta: {
             title: '首页'
@@ -24,7 +24,7 @@ const routes = [
     {
         name: 'echat',
         path: "/echat",
-        component: layOut,
+        component: layout,
         component: () => import('../views/echat/echat.vue'),
         meta: {
             title: '数据统计'
