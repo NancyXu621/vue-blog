@@ -1,11 +1,13 @@
 <template>
-    <div>我的书籍</div>
+    <div class="book"></div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.book {
+    width: 100%;
+}
+</style>

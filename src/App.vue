@@ -12,7 +12,11 @@ export default {
             include: [''],
         }
     },
-    components: { Layout }
+    components: { Layout },
+    mounted() { },
+    methods: {
+        getList() { }
+    }
 };
 </script>
 

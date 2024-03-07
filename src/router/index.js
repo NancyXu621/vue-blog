@@ -16,18 +16,18 @@ const routes = [
         name: 'home',
         path: '/home',
         component: layout,
-        component: () => import('../views/home/index.vue'),
         meta: {
-            title: '首页'
+            title: '首页',
+            component: () => import('../views/home/index.vue'),
         }
     },
     {
         name: 'echat',
         path: "/echat",
         component: layout,
-        component: () => import('../views/echat/echat.vue'),
         meta: {
-            title: '数据统计'
+            title: '数据统计',
+            component: () => import('../views/echat/echat.vue'),
         }
     }
 ]
@@ -37,15 +37,15 @@ const router = createRouter({
     routes, // `routes: routes` 的缩写
 })
 
-router.beforeEach((to, from, next) => {
-    console.log(to)
-    next()
-})
+// router.beforeEach((to, from, next) => {
+//     console.log(to)
+//     next()
+// })
 
-router.afterEach((to, from) => {
-    // 路由发生变化修改页面title
-    document.title = to.meta.title
-})
+// router.afterEach((to, from) => {
+//     // 路由发生变化修改页面title
+//     document.title = to.meta.title
+// })
 
 
 export default router
