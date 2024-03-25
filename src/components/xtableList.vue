@@ -1,20 +1,21 @@
 <template>
-    <el-table :data="data">
-        
+    <el-table :data="tableData">
     </el-table>
 </template>
 
 <script>
 export default {
-    props:{
-        tableData:{
+    props: {
+        tableData: {
             type: Array,
-			default: () => [],
+            default: () => [],
         }
     },
-    data(){
-        return{
-
+    data() {
+        return {
+            /**
+             * 
+             */
         }
     }
 }

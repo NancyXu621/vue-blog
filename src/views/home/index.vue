@@ -1,25 +1,22 @@
 <template>
     <div class="home">
-        <div class="home_content">
-            <el-table :data="list">
-                <el-table-column prop="title" label="歌名" />
-                <el-table-column prop="name" label="歌手" />
-                <el-table-column prop="value" label="专辑" />
-                <el-table-column>
-                    <template #default>
-                        <el-button type="primary" @click="play()">播放</el-button>
-                        <el-button type="primary" @click="add()">收藏</el-button>
-                        <el-button type="danger" @click="del()">移除</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-        </div>
+        <el-table :data="list" class="home_content_table">
+            <el-table-column prop="title" label="歌名" />
+            <el-table-column prop="name" label="歌手" />
+            <el-table-column prop="value" label="专辑" />
+            <el-table-column>
+                <template #default>
+                    <el-button type="primary" @click="play()">播放</el-button>
+                    <el-button type="primary" @click="add()">收藏</el-button>
+                    <el-button type="danger" @click="del()">移除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
     </div>
 </template>
 
 <script>
-
-import { Moon, Sunny } from '@element-plus/icons-vue'
+import { Moon, Sunny } from "@element-plus/icons-vue";
 
 export default {
     data() {
@@ -28,38 +25,47 @@ export default {
                 {
                     title: "中国义勇军进行曲",
                     name: "聂耳",
-                    value: "群"
+                    value: "群",
                 },
                 {
                     title: "My Heart Will Go On",
                     name: "王菲",
-                    value: "是"
+                    value: "是",
                 },
                 {
                     title: "背包客",
                     name: "张国荣",
-                    value: "否"
-                }
+                    value: "否",
+                },
             ],
             inputText: "",
             darkMode: false,
         };
     },
     components: { Moon, Sunny },
+    mounted() {
+        this.getList();
+    },
     methods: {
         /**
-         * 
+         * 哪里不会写哪里，什么没有获取什么，缺什么就去想办法得到，
          */
         getList() {
-            console.log('获取每天推荐的音乐')
+            console.log("获取每天推荐的音乐");
         },
         /** 播放音乐 */
         play() {
-            console.log('111添加')
+            console.log("111添加我的喜欢");
         },
+        /**
+         * 
+         */
         add() {
-            console.log('222收藏我的喜欢')
-        }
+            console.log("222收藏我的喜欢");
+        },
+        del() {
+            console.log("333删除我的喜欢");
+        },
     },
 };
 </script>
@@ -69,10 +75,17 @@ export default {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    display: flex;
 
-    .home_content {
+    .home_content_table {
         width: 100%;
-        display: flex;
+        height: 100%;
+        flex: 1;
+        padding: 12px;
     }
+
+    // .home_content {
+    //     display: flex;
+    // }
 }
 </style>

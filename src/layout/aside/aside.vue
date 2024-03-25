@@ -1,12 +1,22 @@
 <template>
     <div class="yun_aside">
-        <el-menu :collapse="isCollapse" @open="handleOpen" @close="handleClose">
+        <el-menu :collapse="isCollapse" @open="handleOpen" @close="handleClose" v-for="(item, index) in menuList"
+            :key="index + 'a'" :default-active="index">
             <!-- 单个菜单 -->
-            <el-menu-item v-for="(item, index) in menuList" :key="index">
+            <el-sub-menu v-if="item.children.length">
                 <template #title>
-                    {{ item.title }}
+                    <router-link :to="item.path + '/' + item.children?.path">
+                        <span> {{ item.meta?.title }}</span>
+                    </router-link>
                 </template>
-            </el-menu-item>
+            </el-sub-menu>
+            <!-- <el-menu-item v-if="item.children.length">
+                <template #title>
+                    <router-link :to="item.path + '/' + item.children?.path">
+                        <span> {{ item.meta?.title }}</span>
+                    </router-link>
+                </template>
+            </el-menu-item> -->
             <!-- 带有子菜单 -->
         </el-menu>
     </div>
@@ -17,73 +27,12 @@ export default {
     data() {
         return {
             isCollapse: false,
-            menuList: [
-                {
-                    icon: "el-icon-s-home",
-                    title: "首页", //视频推荐
-                },
-                {
-                    icon: "",
-                    title: "书籍", //文本编辑
-                },
-                {
-                    icon: "",
-                    title: "音乐",
-                    submenuList: [
-                        {
-                            icon: "",
-                            subtitle: "我的音乐",
-                        },
-                        {
-                            icon: "",
-                            subtitle: "我的收藏",
-                        },
-                        {
-                            icon: "",
-                            subtitle: "我的歌单",
-                        },
-                    ],
-                },
-                {
-                    icon: "",
-                    title: "视频",
-                    submenuList: [
-                        {
-                            icon: "",
-                            subtitle: "电视剧",
-                        },
-                        {
-                            icon: "",
-                            subtitle: "电影",
-                        },
-                        {
-                            icon: "",
-                            subtitle: "动漫",
-                        },
-                    ],
-                },
-                {
-                    icon: "",
-                    title: "我的图库",
-                    submenuList: [
-                        {
-                            icon: "",
-                            subtitle: "收藏",
-                        },
-                    ],
-                },
-                {
-                    icon: "",
-                    title: "待办事项",
-                    submenuList: [
-                        {
-                            iocn: "",
-                            subtitle: "待办事项",
-                        },
-                    ],
-                },
-            ],
+            menuList: [],
         };
+    },
+    mounted() {
+        console.log(this.$router.getRoutes())
+        this.menuList = this.$router.getRoutes()
     },
     methods: {
         handleOpen() {
@@ -99,7 +48,6 @@ export default {
 <style lang="scss" socped>
 .yun_aside {
     background-color: #fff;
-
     // ::deep() .el-menu {
     //     background-color: #a4c7ec;
     // }

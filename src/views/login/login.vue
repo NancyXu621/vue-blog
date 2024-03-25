@@ -42,7 +42,7 @@ const rules = reactive({
  */
 const loginFormSubmit = (formEl) => {
     console.log('111', formEl)
-    router.push("/home")
+    router.push("/home/home")
     // formEl.validate((valid, fields) => {
     //     if (valid) {
     //         // 登录成功
@@ -57,7 +57,7 @@ const loginFormSubmit = (formEl) => {
  */
 onMounted(() => {
     if (localStorage.getItem("token")) {
-        router.push("/home");
+        router.push("/home/home");
     } else {
     }
 })
