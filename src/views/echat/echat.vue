@@ -1,7 +1,9 @@
 <template>
-    <div ref="myChart" style="width: 600px;height:400px;"></div>
-    <div> 时间：{{ time }} </div>
-    <div> 类型：{{ type }} </div>
+    <div class="echart">
+        <div ref="myChart"></div>
+        <div> 时间：{{ time }} </div>
+        <div> 类型：{{ type }} </div>
+    </div>
 </template>
 
 <script>
@@ -9,7 +11,8 @@ import * as echarts from 'echarts';
 export default {
     data() {
         return {
-            time: ""
+            time: "",
+            type: ""
         }
     },
     created() {
@@ -37,7 +40,7 @@ export default {
                     }
                 ]
             };
-            this.$refs['myChart'].setOption(option);
+            // this.$refs['myChart'].setOption(option);
         }
     }
 }

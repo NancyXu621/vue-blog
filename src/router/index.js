@@ -63,10 +63,10 @@ const router = createRouter({
     routes, // `routes: routes` 的缩写
 })
 
-// router.beforeEach((to, from, next) => {
-//     console.log(to)
-//     next()
-// })
+router.beforeEach((to, from, next) => {
+    console.log(to)
+    next()
+})
 
 // router.afterEach((to, from) => {
 //     // 路由发生变化修改页面title

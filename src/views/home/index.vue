@@ -1,10 +1,10 @@
 <template>
     <div class="home">
-        <el-table :data="list" class="home_content_table">
-            <el-table-column prop="title" label="歌名" />
-            <el-table-column prop="name" label="歌手" />
-            <el-table-column prop="value" label="专辑" />
-            <el-table-column>
+        <el-table :data="list" class="home_content_table" style="width: 100%">
+            <el-table-column prop="title" label="歌名" align="center" />
+            <el-table-column prop="name" label="歌手" align="center" />
+            <el-table-column prop="value" label="专辑" align="center" />
+            <el-table-column label="操作" align="center">
                 <template #default>
                     <el-button type="primary" @click="play()">播放</el-button>
                     <el-button type="primary" @click="add()">收藏</el-button>
@@ -32,11 +32,6 @@ export default {
                     name: "王菲",
                     value: "是",
                 },
-                {
-                    title: "背包客",
-                    name: "张国荣",
-                    value: "否",
-                },
             ],
             inputText: "",
             darkMode: false,
@@ -48,7 +43,7 @@ export default {
     },
     methods: {
         /**
-         * 哪里不会写哪里，什么没有获取什么，缺什么就去想办法得到，
+         *
          */
         getList() {
             console.log("获取每天推荐的音乐");
@@ -85,7 +80,7 @@ export default {
     }
 
     // .home_content {
-    //     display: flex;
-    // }
+    //     display: flex; 
+    // todo  
 }
 </style>

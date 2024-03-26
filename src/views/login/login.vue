@@ -41,7 +41,7 @@ const rules = reactive({
  * @param {*} password
  */
 const loginFormSubmit = (formEl) => {
-    console.log('111', formEl)
+    console.log('笔友信', formEl)
     router.push("/home/home")
     // formEl.validate((valid, fields) => {
     //     if (valid) {

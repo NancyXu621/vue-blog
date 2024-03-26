@@ -1,11 +1,10 @@
 <template>
     <div class="yun_aside">
-        <el-menu :collapse="isCollapse" @open="handleOpen" @close="handleClose" v-for="(item, index) in menuList"
-            :key="index + 'a'" :default-active="index">
+        <el-menu :collapse="isCollapse" v-for="(item, index) in menuList" :key="index + 'a'" :default-active="index">
             <!-- 单个菜单 -->
             <el-sub-menu v-if="item.children.length">
                 <template #title>
-                    <router-link :to="item.path + '/' + item.children?.path">
+                    <router-link :to="item.path + '/' + item.children[0]?.path">
                         <span> {{ item.meta?.title }}</span>
                     </router-link>
                 </template>
@@ -31,7 +30,6 @@ export default {
         };
     },
     mounted() {
-        console.log(this.$router.getRoutes())
         this.menuList = this.$router.getRoutes()
     },
     methods: {
