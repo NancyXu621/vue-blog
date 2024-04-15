@@ -25,13 +25,23 @@ export default {
                 {
                     title: "中国义勇军进行曲",
                     name: "聂耳",
-                    value: "群",
+                    value: "群星",
                 },
                 {
                     title: "My Heart Will Go On",
                     name: "王菲",
                     value: "是",
                 },
+                {
+                    title: "那是你离开北京的生活",
+                    name: "薛之谦",
+                    value: "是",
+                },
+                {
+                    title: "爸爸去哪里呀",
+                    name: "群星",
+                    value: "群星",
+                }
             ],
             inputText: "",
             darkMode: false,
@@ -42,9 +52,7 @@ export default {
         this.getList();
     },
     methods: {
-        /**
-         *
-         */
+        /** */
         getList() {
             console.log("获取每天推荐的音乐");
         },
@@ -52,9 +60,7 @@ export default {
         play() {
             console.log("111添加我的喜欢");
         },
-        /**
-         * 
-         */
+        /** */
         add() {
             console.log("222收藏我的喜欢");
         },
@@ -73,7 +79,7 @@ export default {
     display: flex;
 
     .home_content_table {
-        width: 100%;
+        // width: 100%;
         height: 100%;
         flex: 1;
         padding: 12px;

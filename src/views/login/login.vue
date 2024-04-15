@@ -32,7 +32,7 @@ const rules = reactive({
         required: true, message: "请输入密码", trigger: 'blur'
     }],
 })
-/**
+/** 
  * 登录逻辑
  *  1. 校验用户名和密码
  *  2. 登录成功后，跳转到首页
@@ -41,7 +41,7 @@ const rules = reactive({
  * @param {*} password
  */
 const loginFormSubmit = (formEl) => {
-    console.log('笔友信', formEl)
+    // localStorage.setItem("token",)
     router.push("/home/home")
     // formEl.validate((valid, fields) => {
     //     if (valid) {
@@ -56,9 +56,9 @@ const loginFormSubmit = (formEl) => {
  * 页面加载时，判断是否已经登录
  */
 onMounted(() => {
-    if (localStorage.getItem("token")) {
+    console.log("获取koken", localStorage.getItem("token"))
+    if (localStorage.getItem("token", user)) {
         router.push("/home/home");
-    } else {
     }
 })
 </script>

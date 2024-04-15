@@ -2,20 +2,21 @@
     <div class="yun_aside">
         <el-menu :collapse="isCollapse" v-for="(item, index) in menuList" :key="index + 'a'" :default-active="index">
             <!-- 单个菜单 -->
-            <el-sub-menu v-if="item.children.length">
+            <!-- <el-sub-menu v-if="item.children.length">
                 <template #title>
                     <router-link :to="item.path + '/' + item.children[0]?.path">
                         <span> {{ item.meta?.title }}</span>
                     </router-link>
                 </template>
-            </el-sub-menu>
-            <!-- <el-menu-item v-if="item.children.length">
-                <template #title>
-                    <router-link :to="item.path + '/' + item.children?.path">
+</el-sub-menu> -->
+            <router-link :to="item.path + '/' + item.children[0]?.path">
+                <el-menu-item v-if="item.children.length">
+                    <template #title>
                         <span> {{ item.meta?.title }}</span>
-                    </router-link>
-                </template>
-            </el-menu-item> -->
+                    </template>
+                </el-menu-item>
+            </router-link>
+
             <!-- 带有子菜单 -->
         </el-menu>
     </div>
@@ -49,5 +50,10 @@ export default {
     // ::deep() .el-menu {
     //     background-color: #a4c7ec;
     // }
+}
+
+.router-link {
+    color: #000;
+
 }
 </style>

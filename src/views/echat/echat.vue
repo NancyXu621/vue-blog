@@ -1,6 +1,7 @@
 <template>
     <div class="echart">
         <div ref="myChart"></div>
+        <div> 播放量：{{ playNum }}</div>
         <div> 时间：{{ time }} </div>
         <div> 类型：{{ type }} </div>
     </div>
@@ -16,13 +17,13 @@ export default {
         }
     },
     created() {
-        this.initEchart()
+        // this.initEchart() 
     },
     methods: {
         initEchart() {
             var option = {
                 title: {
-                    text: 'ECharts 入门示例'
+                    text: 'ECharts 入门示例',
                 },
                 tooltip: {},
                 legend: {
@@ -40,7 +41,7 @@ export default {
                     }
                 ]
             };
-            // this.$refs['myChart'].setOption(option);
+            this.$refs['myChart'].setOption(option);
         }
     }
 }
