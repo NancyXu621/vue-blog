@@ -1,6 +1,8 @@
 <template>
-    <div>加入房间</div>
-
+    <div class="chat-room">
+        <div>聊天室</div>
+        <el-input v-model="content"></el-input>
+    </div>
 </template>
 
 <script>
@@ -10,19 +12,22 @@ import { Room } from 'livekit-client';
 export default {
     data() {
         return {
-            wsRUL: "",
-            token: ""
+            wsRUL: "", // WebSocket服务的URL
+            token: "", // 用户认证的令牌
+            content: "TD" // 
         }
     },
-    //加入房间
     async mounted() {
-        //创建新的房间
-        // const room = new Room();
-        // console.log('connected to room', room.name);
-        // await room.connect(this.wsURL, this.token);
-        // await room.localParticipant.enableCameraAndMicrophone();
+    },
+    methods: {
     }
 }
 </script>
 
-<style></style>
+<style scoped>
+.chat-room {
+    width: 200px;
+    background: #fdfdfd;
+    margin: 12px;
+}
+</style>

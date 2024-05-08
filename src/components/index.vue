@@ -6,12 +6,14 @@
 
 <script>
 export default {
-    // 最温柔的风  
     data() {
         return {
-            
+            document: '',
         }
     },
+    methods: {
+
+    }
 } 
 </script>
 

@@ -1,50 +1,45 @@
 <template>
-    <div class="echart">
-        <div ref="myChart"></div>
-        <div> 播放量：{{ playNum }}</div>
-        <div> 时间：{{ time }} </div>
-        <div> 类型：{{ type }} </div>
+    <div class="echat_pages">
+        <div>听歌排行</div>
+        <div class="echart_box">
+            <div class="echart_content">
+                <div class="echart_card">
+                    <div>日</div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import * as echarts from 'echarts';
 export default {
     data() {
         return {
-            time: "",
-            type: ""
-        }
+            stateList: [
+                {
+                    name: "日",
+                    value: 0,
+                }, {
+                    name: "周",
+                    value: 0,
+                }, {
+                    name: "月",
+                    value: 0,
+                }, {
+                    name: "总",
+                    value: 0,
+                }
+            ],
+        };
     },
-    created() {
-        // this.initEchart() 
+    mounted() {
+        this.init();
     },
-    methods: {
-        initEchart() {
-            var option = {
-                title: {
-                    text: 'ECharts 入门示例',
-                },
-                tooltip: {},
-                legend: {
-                    data: ['销量']
-                },
-                xAxis: {
-                    data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-                },
-                yAxis: {},
-                series: [
-                    {
-                        name: '销量',
-                        type: 'bar',
-                        data: [5, 20, 36, 10, 10, 20]
-                    }
-                ]
-            };
-            this.$refs['myChart'].setOption(option);
-        }
-    }
-}
+};
 </script>
 
-<style></style>
+<style scoped>
+.echat_pages {
+    width: 100%;
+}
+</style>
