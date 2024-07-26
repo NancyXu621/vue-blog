@@ -37,23 +37,24 @@ const rules = reactive({
  *  1. 校验用户名和密码
  *  2. 登录成功后，跳转到首页
  *  3. 登录失败，提示错误信息
- * @param {*} username
+ * @param {*} username 
  * @param {*} password
  */
 const loginFormSubmit = (formEl) => {
     // localStorage.setItem("token",)
     router.push("/home/home")
+    console.log('')
     // formEl.validate((valid, fields) => {
     //     if (valid) {
     //         // 登录成功
     //         router.push("/home")
     //     } else {
     //         console.log('error submit!', fields)
-    //     }
-    // })
+    //     
+    // }) 
 }
 /**
- * 页面加载时，判断是否已经登录
+ * 页面加载时，判断是否已经登录 
  */
 onMounted(() => {
     console.log("获取koken", localStorage.getItem("token"))

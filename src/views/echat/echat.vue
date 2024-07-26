@@ -1,45 +1,16 @@
 <template>
-    <div class="echat_pages">
-        <div>听歌排行</div>
-        <div class="echart_box">
-            <div class="echart_content">
-                <div class="echart_card">
-                    <div>日</div>
-                </div>
-            </div>
-        </div>
+    <div class="echat_pages"></div>
+    <div>
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            stateList: [
-                {
-                    name: "日",
-                    value: 0,
-                }, {
-                    name: "周",
-                    value: 0,
-                }, {
-                    name: "月",
-                    value: 0,
-                }, {
-                    name: "总",
-                    value: 0,
-                }
-            ],
-        };
-    },
-    mounted() {
-        this.init();
-    },
-};
+    //只听着苏钦北突然开口说： 好了，你现在带着你那个装睡的朋友走吧。我简直不敢想象自己听到的，无语的看了看他说：‘我看你真的是有点病。算姐今天倒霉。别装了苏萌萌，我们走吧’
+    //苏萌萌听到我说的话也马上起身，准备走。可到底是不甘心，于是故意拉了一下我的手，将我手上带的戒指攥下来。滚到车上。我看了看她挑了一下眉说：你装的真像，别真不能走了啊。苏
+    //钦北看了看反光镜对女孩这种行为感到有点想笑。我和苏萌萌下了车，还想再骂他一句，车就直接开了出去，差点要被撞到。我实在是忍不住了：”我靠，他爹的，下次再见面先打一架这个s**b“
+    //我和顾萌萌环顾看了看周围，准备打开手机打车。但是
+}
 </script>
 
-<style scoped>
-.echat_pages {
-    width: 100%;
-}
-</style>
+<style></style>

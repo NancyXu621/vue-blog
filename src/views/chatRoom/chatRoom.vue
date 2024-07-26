@@ -1,25 +1,33 @@
 <template>
     <div class="chat-room">
-        <div>聊天室</div>
-        <el-input v-model="content"></el-input>
+        <div>快乐倒计时：</div>
+        <div id="countdown"></div>
     </div>
+
 </template>
 
 <script>
-import { Room } from 'livekit-client';
-
 
 export default {
     data() {
         return {
-            wsRUL: "", // WebSocket服务的URL
-            token: "", // 用户认证的令牌
-            content: "TD" // 
         }
     },
     async mounted() {
+        this.getTime()
+        setInterval(this.getTime, 1000);
     },
     methods: {
+        getTime() {
+            const now = new Date();
+            const targetDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0);
+            const currentDateTime = new Date().getTime();
+            let remainingTime = targetDateTime - currentDateTime;
+            let hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = hours + ":" + minutes + ":" + seconds;
+        },
     }
 }
 </script>
