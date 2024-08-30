@@ -1,33 +1,37 @@
 <template>
     <div class="chat-room">
-        <div>快乐倒计时：</div>
-        <div id="countdown"></div>
+        <el-button type="primary" @click="exportExcel">导出elexl</el-button>
     </div>
 
 </template>
 
 <script>
+import * as XLSX from 'xlsx'; // 使用命名导入
 
 export default {
     data() {
         return {
+            list: [
+                {
+                    creator: '6aa07f48b9bfd3a81958666',
+                    address: "北京市,北京城区,东城区",
+                    customerIndustry: 1,
+                    customTag: 6,
+                    mobile: 13988888
+                }
+            ]
         }
     },
-    async mounted() {
-        this.getTime()
-        setInterval(this.getTime, 1000);
-    },
     methods: {
-        getTime() {
-            const now = new Date();
-            const targetDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0);
-            const currentDateTime = new Date().getTime();
-            let remainingTime = targetDateTime - currentDateTime;
-            let hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-            document.getElementById("countdown").innerHTML = hours + ":" + minutes + ":" + seconds;
-        },
+        exportExcel() {
+            const ws = XLSX.utils.json_to_sheet(this.list);
+            // 创建一个新的工作簿
+            const wb = XLSX.utils.book_new();
+            // 将工作表添加到工作簿
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            // 生成 Excel 文件并触发下载
+            XLSX.writeFile(wb, 'data.xlsx');
+        }
     }
 }
 </script>

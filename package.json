@@ -22,7 +22,8 @@
     "swiper": "^10.1.0",
     "vue": "^3.3.4",
     "vue-awesome-swiper": "^5.0.1",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
