@@ -1,7 +1,6 @@
 <template>
     <div class="login_bg">
         <div class="login_box">
-            <div class="login_box_title">登录</div>
             <el-form ref="loginForm" :model="user" :rules="rules" label-width="auto">
                 <el-form-item label="用户名" prop="username">
                     <el-input v-model="user.username" placeholder="请输入用户名"></el-input>
@@ -43,18 +42,16 @@ const rules = reactive({
 const loginFormSubmit = (formEl) => {
     // localStorage.setItem("token",)
     router.push("/home/home")
-    console.log('')
     // formEl.validate((valid, fields) => {
     //     if (valid) {
     //         // 登录成功
     //         router.push("/home")
     //     } else {
     //         console.log('error submit!', fields)
-    //     
     // }) 
 }
 /**
- * 页面加载时，判断是否已经登录 
+ * 页面加载时，判断是否已经登录
  */
 onMounted(() => {
     console.log("获取koken", localStorage.getItem("token"))
