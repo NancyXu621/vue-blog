@@ -2,10 +2,6 @@
     <div class="yun_blog_header">
         <span class="yun_blog_header_item">个人设置</span>
         <span class="yun_blog_header_item" style="margin:0 12px 0 auto" @click="logout">退出登录</span>
-        <span class="yun_blog_header_item">
-            <el-switch v-model="darkMode" :active-icon="Moon" :inactive-icon="Sunny" inline-prompt
-                style="--el-switch-on-color: #03A9F4; --el-switch-off-color: #ffeb3b" />
-        </span>
     </div>
 </template>
 

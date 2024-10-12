@@ -2,7 +2,7 @@
     <div class="layout_index">
         <yun-header></yun-header>
         <div class="layout_index_content">
-            <yun-aside></yun-aside>
+            <!-- <yun-aside></yun-aside> -->
             <router-view class="layout_index_content_pages"></router-view>
         </div>
     </div>
