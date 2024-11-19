@@ -1,45 +1,60 @@
 <template>
-    <div class="chat-room">
-        <el-button type="primary" @click="exportExcel">导出elexl</el-button>
-    </div>
-
+  <div class="chat-room">
+    <Group></Group>
+    <Leafer></Leafer>
+    <Frame></Frame>
+  </div>
 </template>
 
-<script>
-import * as XLSX from 'xlsx'; // 使用命名导入
+<script setup>
+import { Group, Leafer, Frame } from "leafer-ui";
+import "@leafer-in/animate";
 
-export default {
-    data() {
-        return {
-            list: [
-                {
-                    creator: '6aa07f48b9bfd3a81958666',
-                    address: "北京市,北京城区,东城区",
-                    customerIndustry: 1,
-                    customTag: 6,
-                    mobile: 13988888
-                }
-            ]
-        }
-    },
-    methods: {
-        exportExcel() {
-            const ws = XLSX.utils.json_to_sheet(this.list);
-            // 创建一个新的工作簿
-            const wb = XLSX.utils.book_new();
-            // 将工作表添加到工作簿
-            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-            // 生成 Excel 文件并触发下载
-            XLSX.writeFile(wb, 'data.xlsx');
-        }
-    }
-}
+const leafer = new Leafer({ view: window });
+
+const page1 = new Frame({
+  x: 300,
+  y: 100,
+  width: 150,
+  height: 100,
+  fill: "#FEB027",
+  animation: {
+    // 入场动画
+    keyframes: [
+      { opacity: 0, offsetX: -150 },
+      { opacity: 1, offsetX: 0 },
+    ],
+    duration: 0.8,
+  },
+  animationOut: {
+    // 出场动画
+    style: { opacity: 0, offsetX: 150 },
+    duration: 0.8,
+  },
+});
+
+const page2 = page1.clone({ fill: "#32cd79" }); // 克隆 page 并重新设置fill
+
+const group = new Group({ children: [page1] });
+
+leafer.add(group);
+
+// 切换页面, 自动执行入场、出场动画
+setInterval(() => {
+  if (page1.parent) {
+    group.add(page2);
+    page1.remove();
+  } else {
+    group.add(page1);
+    page2.remove();
+  }
+}, 2000);
 </script>
 
 <style scoped>
 .chat-room {
-    width: 200px;
-    background: #fdfdfd;
-    margin: 12px;
+  width: 200px;
+  background: #fdfdfd;
+  margin: 12px;
 }
 </style>

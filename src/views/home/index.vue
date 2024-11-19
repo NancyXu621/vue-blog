@@ -53,7 +53,7 @@ export default {
   },
   components: { Moon, Sunny },
   mounted() {
-    this.getList();
+    // this.getList();
   },
   methods: {
     /** */
