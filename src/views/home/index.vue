@@ -64,7 +64,7 @@ export default {
     play() {
       console.log("111添加我的喜欢");
     },
-    /** */
+    /**  */
     add() {
       console.log("222收藏我的喜欢");
     },
