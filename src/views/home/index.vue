@@ -6,9 +6,9 @@
       <el-table-column prop="value" label="专辑" align="center" />
       <el-table-column label="操作" align="center">
         <template #default>
-          <el-button type="primary" @click="play()">播放</el-button>
-          <el-button type="primary" @click="add()">收藏</el-button>
-          <el-button type="danger" @click="del()">移除</el-button>
+          <!-- <el-button type="primary" @click="play()">播放</el-button> -->
+          <!-- <el-button type="primary" @click="add()">收藏</el-button> -->
+          <!-- <el-button type="danger" @click="del()">移除</el-button> -->
         </template>
       </el-table-column>
     </el-table>
@@ -58,6 +58,7 @@ export default {
   methods: {
     /** */
     getList() {
+      // this.list = [{}]
       console.log("获取每天推荐的音乐");
     },
     /** 播放音乐 */

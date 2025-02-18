@@ -16,7 +16,6 @@
                     </template>
                 </el-menu-item>
             </router-link>
-
             <!-- 带有子菜单 -->
         </el-menu>
     </div>
@@ -31,7 +30,7 @@ export default {
         };
     },
     mounted() {
-        this.menuList = this.$router.getRoutes()
+        this.menuList = this.$router.getRoutes();
     },
     methods: {
         handleOpen() {
@@ -54,6 +53,5 @@ export default {
 
 .router-link {
     color: #000;
-
 }
 </style>

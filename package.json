@@ -13,6 +13,7 @@
     "@leafer-in/animate": "^1.0.9",
     "element-plus": "^2.3.8",
     "html5-qrcode": "^2.3.8",
+    "leafer": "^1.4.0",
     "leafer-ui": "^1.0.9",
     "leaflet": "^1.9.4",
     "livekit-client": "^2.0.10",
