@@ -63,42 +63,19 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.handleResize);
+    this.layers = Array.from(this.$el.querySelectorAll(".layer img"));
   },
   methods: {
     onMouseMove(event) {
-      const bannerRect = this.$el
-        .querySelector(".animateds-banner")
-        .getBoundingClientRect();
-      const isMouseOverBanner =
-        event.clientX >= bannerRect.left &&
-        event.clientX <= bannerRect.right &&
-        event.clientY >= bannerRect.top &&
-        event.clientY <= bannerRect.bottom;
-      if (isMouseOverBanner) {
-        // 更新鼠标位置
-        this.mouseX = event.clientX;
-        this.mouseY = event.clientY;
-        const relativeX = (this.mouseX - this.width / 2) / 20;
-        const relativeY = (this.mouseY - this.height / 2) / 20;
-        this.layers.forEach((layer, index) => {
-          const depth = index * 2 + 2; // 深度越大，移动越少
-          layer.style.transition = "none"; // 禁用过渡效果
-          layer.style.transform = `translate(${relativeX * depth}px, ${relativeY}px)`;
-          setTimeout(() => {
-            // 使用setTimeout确保下一次渲染前应用了新的transform值
-            layer.style.transition = ""; // 重新启用过渡效果
-          }, 0);
-        });
-      } else {
-        this.layers.forEach((layer) => {
-          layer.style.transition = "none"; // 禁用过渡效果
-          layer.style.transform = "none"; // 或者设置为其他默认值
-          setTimeout(() => {
-            // 使用setTimeout确保下一次渲染前应用了新的transform值
-            layer.style.transition = ""; // 重新启用过渡效果
-          }, 0);
-        });
-      }
+      // 记录鼠标位置
+      this.mouseX = event.clientX;
+      this.mouseY = event.clientY;
+      const relativeX = (this.mouseX - this.width / 1) / 30; // 计算鼠标相对于屏幕中心的水平位置
+      this.layers.forEach((layer, index) => {
+        const depth = index * 0.1 + 2; // 深度越大，移动越少
+        layer.style.transform = `translateX(${relativeX * depth}px)`;
+        console.log("layer");
+      });
     },
     handleResize() {
       // 更新窗口尺寸
@@ -123,6 +100,11 @@ export default {
     top: 0;
     left: 0;
     overflow: hidden;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
 
     .layer {
       position: absolute;
@@ -135,14 +117,14 @@ export default {
       justify-content: center;
       transition: transform 0.75s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-      img {
-        transition: transform 0.75s cubic-bezier(0.645, 0.045, 0.355, 1); // 确保图片也应用过渡效果
-      }
+      // img {
+      //   transition: transform 0.75s cubic-bezier(0.645, 0.045, 0.355, 1); // 确保图片也应用过渡效果
+      // }
 
-      &:hover img {
-        // 定义鼠标悬停时的变换效果
-        transform: translateX(20px); // 向右移动20px，可以根据需要调整这个值
-      }
+      // &:hover img {
+      //   // 定义鼠标悬停时的变换效果0
+      //   transform: translateX(20px); // 向右移动20px，可以根据需要调整这个值
+      // }
 
       .spring-1 {
         width: 4833px;
